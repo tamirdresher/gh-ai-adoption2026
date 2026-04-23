@@ -1,0 +1,22 @@
+{
+  "universe_usage_history": [
+    {
+      "universe": "The Big Bang Theory",
+      "used_at": "2026-04-23T14:17:32Z",
+      "repo": "gh-ai-adoption2026"
+    }
+  ],
+  "assignment_cast_snapshots": {
+    "2026-04-23-init": {
+      "assignment_id": "2026-04-23-init",
+      "universe": "The Big Bang Theory",
+      "created_at": "2026-04-23T14:17:32Z",
+      "agents": {
+        "sheldon": "Lead",
+        "leonard": "Backend Dev",
+        "howard": "CLI Dev",
+        "raj": "Tester"
+      }
+    }
+  }
+}
