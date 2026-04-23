@@ -6,15 +6,10 @@ public static class SearchCommand
 {
     public static Command Create()
     {
-        var queryArgument = new Argument<string>("query")
-        {
-            Description = "Search terms to find products"
-        };
+        var queryArgument = new Argument<string>("query", "Search terms to find products");
 
-        var marketplaceOption = new Option<string>("--marketplace", "-m")
-        {
-            Description = "Target marketplace to search (e.g., amazon, ebay)"
-        };
+        var marketplaceOption = new Option<string>("--marketplace", "Target marketplace to search (e.g., amazon, ebay)");
+        marketplaceOption.AddAlias("-m");
 
         var command = new Command("search", "Search for products across marketplaces")
         {
@@ -22,16 +17,12 @@ public static class SearchCommand
             marketplaceOption
         };
 
-        command.SetAction(async (parseResult, cancellationToken) =>
+        command.SetHandler((query, marketplace) =>
         {
-            var query = parseResult.GetValue(queryArgument)!;
-            var marketplace = parseResult.GetValue(marketplaceOption);
-
             var target = string.IsNullOrEmpty(marketplace) ? "all marketplaces" : marketplace;
             Console.WriteLine($"Searching {target} for: {query}");
             // TODO: Wire up marketplace connector search
-            await Task.CompletedTask;
-        });
+        }, queryArgument, marketplaceOption);
 
         return command;
     }

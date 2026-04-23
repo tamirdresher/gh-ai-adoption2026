@@ -8,48 +8,39 @@ public static class ConfigCommand
     {
         var command = new Command("config", "Manage UniCart settings (API keys, default marketplace, etc.)");
 
-        var setCommand = CreateSetCommand();
-        var getCommand = CreateGetCommand();
-        var listCommand = CreateListCommand();
-
-        command.Add(setCommand);
-        command.Add(getCommand);
-        command.Add(listCommand);
+        command.Add(CreateSetCommand());
+        command.Add(CreateGetCommand());
+        command.Add(CreateListCommand());
 
         return command;
     }
 
     private static Command CreateSetCommand()
     {
-        var keyArg = new Argument<string>("key") { Description = "Configuration key to set" };
-        var valueArg = new Argument<string>("value") { Description = "Value to assign" };
+        var keyArg = new Argument<string>("key", "Configuration key to set");
+        var valueArg = new Argument<string>("value", "Value to assign");
 
         var cmd = new Command("set", "Set a configuration value") { keyArg, valueArg };
 
-        cmd.SetAction(async (parseResult, cancellationToken) =>
+        cmd.SetHandler((key, value) =>
         {
-            var key = parseResult.GetValue(keyArg)!;
-            var value = parseResult.GetValue(valueArg)!;
             Console.WriteLine($"Setting {key} = {value}");
             // TODO: Persist configuration
-            await Task.CompletedTask;
-        });
+        }, keyArg, valueArg);
 
         return cmd;
     }
 
     private static Command CreateGetCommand()
     {
-        var keyArg = new Argument<string>("key") { Description = "Configuration key to retrieve" };
+        var keyArg = new Argument<string>("key", "Configuration key to retrieve");
         var cmd = new Command("get", "Get a configuration value") { keyArg };
 
-        cmd.SetAction(async (parseResult, cancellationToken) =>
+        cmd.SetHandler(key =>
         {
-            var key = parseResult.GetValue(keyArg)!;
             Console.WriteLine($"Value for '{key}': (not set)");
             // TODO: Read from configuration
-            await Task.CompletedTask;
-        });
+        }, keyArg);
 
         return cmd;
     }
@@ -58,12 +49,11 @@ public static class ConfigCommand
     {
         var cmd = new Command("list", "List all configuration values");
 
-        cmd.SetAction(async (parseResult, cancellationToken) =>
+        cmd.SetHandler(() =>
         {
             Console.WriteLine("Configuration:");
             Console.WriteLine("  (no values configured)");
             // TODO: List all configuration entries
-            await Task.CompletedTask;
         });
 
         return cmd;

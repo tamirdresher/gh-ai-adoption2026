@@ -23,5 +23,4 @@ rootCommand.Add(CheckoutCommand.Create());
 rootCommand.Add(SearchCommand.Create());
 rootCommand.Add(ConfigCommand.Create());
 
-var parseResult = rootCommand.Parse(args);
-return await parseResult.InvokeAsync();
+return await rootCommand.InvokeAsync(args);

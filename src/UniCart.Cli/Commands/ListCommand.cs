@@ -8,12 +8,11 @@ public static class ListCommand
     {
         var command = new Command("list", "Show current cart contents");
 
-        command.SetAction(async (parseResult, cancellationToken) =>
+        command.SetHandler(() =>
         {
             Console.WriteLine("Cart contents:");
             Console.WriteLine("  (empty)");
             // TODO: Wire up cart service to display items
-            await Task.CompletedTask;
         });
 
         return command;
