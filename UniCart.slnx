@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/UniCart.Api/UniCart.Api.csproj" />
+    <Project Path="src/UniCart.Cli/UniCart.Cli.csproj" />
+    <Project Path="src/UniCart.Connectors/UniCart.Connectors.csproj" />
+    <Project Path="src/UniCart.Core/UniCart.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/UniCart.Api.Tests/UniCart.Api.Tests.csproj" />
+    <Project Path="tests/UniCart.Cli.Tests/UniCart.Cli.Tests.csproj" />
+    <Project Path="tests/UniCart.Connectors.Tests/UniCart.Connectors.Tests.csproj" />
+    <Project Path="tests/UniCart.Core.Tests/UniCart.Core.Tests.csproj" />
+    <Project Path="tests/UniCart.TestHelpers/UniCart.TestHelpers.csproj" />
+  </Folder>
+</Solution>
