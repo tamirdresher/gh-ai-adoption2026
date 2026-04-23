@@ -8,10 +8,11 @@ public static class CheckoutCommand
     {
         var command = new Command("checkout", "Initiate the checkout flow for items in the cart");
 
-        command.SetHandler(() =>
+        command.SetAction(async (parseResult, cancellationToken) =>
         {
             Console.WriteLine("Starting checkout...");
             // TODO: Wire up checkout orchestration
+            await Task.CompletedTask;
         });
 
         return command;
